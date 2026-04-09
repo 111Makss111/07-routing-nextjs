@@ -1,7 +1,4 @@
-'use client'
-
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
 import { noteTags } from '@/types/note'
 
@@ -19,16 +16,11 @@ const sidebarLinks = [
 ]
 
 export default function DefaultSidebar() {
-  const pathname = usePathname()
-
   return (
     <ul className={css.menuList}>
       {sidebarLinks.map(({ href, label }) => (
         <li key={href} className={css.menuItem}>
-          <Link
-            href={href}
-            className={`${css.menuLink} ${pathname === href ? css.active : ''}`}
-          >
+          <Link href={href} className={css.menuLink}>
             {label}
           </Link>
         </li>
