@@ -1,1 +1,1 @@
-# 07-routing-nextjs1
+# 06-notehub-nextjs
