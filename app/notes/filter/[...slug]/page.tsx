@@ -1,5 +1,5 @@
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 
 import NotesClient from '@/app/notes/Notes.client'
 import { fetchNotes } from '@/lib/api'
@@ -8,7 +8,7 @@ import { noteTags, type NoteTag } from '@/types/note'
 
 interface FilteredNotesPageProps {
   params: Promise<{
-    slug?: string[]
+    slug: string[]
   }>
   searchParams: Promise<{
     page?: string
@@ -26,12 +26,8 @@ function getPageValue(value?: string) {
   return 1
 }
 
-function getTagValue(slug?: string[]): NoteTag | undefined {
-  if (!slug || slug.length === 0) {
-    redirect('/notes/filter/all')
-  }
-
-  if (slug.length > 1) {
+function getTagValue(slug: string[]): NoteTag | undefined {
+  if (slug.length !== 1) {
     notFound()
   }
 
